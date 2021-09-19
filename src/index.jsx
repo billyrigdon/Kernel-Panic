@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import KernelPanicContainer from './Components/KernelPanicContainer/KernelPanicContainer';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <KernelPanicContainer />
   </React.StrictMode>,
   document.getElementById('root')
 );
