@@ -48,7 +48,7 @@ export default class TestScene extends Phaser.Scene {
 		this.physics.add.collider(bugs, platforms, (bug) => {
 			bug.destroy();
 			//console.log(this.game.react.state);
-			this.game.react.setState({ sanity: this.game.react.state.sanity += 1 });
+			this.game.react.setState({ testOpen: true });
 		})
 		
 		this.physics.add.collider(gameState.player, bugs, () => {

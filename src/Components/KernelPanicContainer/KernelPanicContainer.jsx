@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import KernelPanic from '../../KernelPanic';
+import TestScreen from '../BattleScreen/TestScreen';
 
 class KernelPanicContainer extends Component {	
 	constructor(props) {
@@ -7,7 +8,8 @@ class KernelPanicContainer extends Component {
 	}
 
 	state = {
-		sanity: 100
+		sanity: 100,
+		testOpen: false
 	}
 
 	componentDidMount() {
@@ -17,6 +19,7 @@ class KernelPanicContainer extends Component {
 	render() {
 		return (
 			<Fragment>
+				{this.state.testOpen && <TestScreen />}
 				<p>{this.state.sanity}</p>
 				<div id="gameContainer"></div>
 			</Fragment>
