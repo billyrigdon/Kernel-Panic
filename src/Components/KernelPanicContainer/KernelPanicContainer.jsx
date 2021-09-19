@@ -1,12 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import KernelPanic from '../../KernelPanic';
 import TestScreen from '../BattleScreen/TestScreen';
+import './KernelPanic.css'
 
 class KernelPanicContainer extends Component {	
-	constructor(props) {
-		super(props);
-	}
-
 	state = {
 		sanity: 100,
 		testOpen: false
@@ -20,7 +17,6 @@ class KernelPanicContainer extends Component {
 		return (
 			<Fragment>
 				{this.state.testOpen && <TestScreen />}
-				<p>{this.state.sanity}</p>
 				<div id="gameContainer"></div>
 			</Fragment>
 		)
