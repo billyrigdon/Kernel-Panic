@@ -3,6 +3,7 @@ import KernelPanic from '../../KernelPanic';
 import BattleScreen from '../BattleScreen/BattleScreen';
 import './KernelPanic.css'
 
+
 class KernelPanicContainer extends Component {
 	constructor(props) {
 		super(props);
