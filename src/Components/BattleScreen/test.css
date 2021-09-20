@@ -1,13 +1,11 @@
-#test {
+#battle-container {
 	position:absolute;
 	display: block;
 	z-index: 100;
 	background-color: white;
-	width: 1600px;
-	height:800px;
+	width: 100vw;
+	height:100vh;
 	left: 0;
-	right: 0;
-	margin-left: auto;
-	margin-right: auto;
-	top: 100px;
+	top:0;
 }
+

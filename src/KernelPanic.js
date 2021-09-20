@@ -7,13 +7,14 @@ class KernelPanic extends Phaser.Game {
 	constructor(react) {
 		const config = {
 			type: Phaser.AUTO,
-			width: 1600,
-			height: 800,
-			backgroundColor: "b9eaff",
+			width: window.innerWidth,
+			height: window.innerHeight,
+			parent: "gameContainer",
+			pixelArt:true,
 			physics: {
 				default: 'arcade',
 				arcade: {
-					gravity: { y: 200 },
+					gravity: { y: 0 },
 					enableBody: true,
 				}
 			},
