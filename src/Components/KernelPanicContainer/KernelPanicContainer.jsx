@@ -45,26 +45,27 @@ class KernelPanicContainer extends Component {
 				typingSpeed: 0,
 				brainPower: 0,
 				quantity: 5,
+				description: "Raises Sanity by 50 points"
 			},
 		],
 
 		//Enemy Stats
 		enemyName: "eXpl01t.exe",
-		enemyBytes: 100,
-		enemySpeed: 10,
-		enemyPower: 50,
+		enemyBytes: 20,
+		enemySpeed: 3,
+		enemyPower: 5,
 		enemyType: "bug",
 		enemyAscii: `
-		\\       /
-		 \\     /  
-		  \\.-./ 
-		  (o\\^/o)  _   _   _     __
-		  ./ \\.\\ ( )-( )-( ) .-'  '-.
-		  [-] \\(//  ||   \\/ (   )) '-.
-		  //-__||__.-\\.       .-'
-		  (/    ()     \)'-._.-'
-		  ||    ||      \\
-		  ('    ('       ')`,
+	\\       /
+	 \\     /  
+	  \\.-./ 
+	  (o\\^/o)  _   _   _     __
+	  ./ \\.\\ ( )-( )-( ) .-'  '-.
+	  [-] \\(//  ||   \\/ (   )) '-.
+	  //-__||__.-\\.       .-'
+	  (/    ()     \)'-._.-'
+	  ||    ||      \\
+	  ('    ('       ')`,
 
 		//Opens battle screen if true
 		battleOpen: true,

@@ -2,7 +2,6 @@ import "./StartMenu.scss";
 import terminalIcon from "../../Assets/Icons/terminal.svg";
 import browserIcon from "../../Assets/Icons/browser.svg";
 import notesIcon from "../../Assets/Icons/notepad-48.svg";
-import startIcon from "../../Assets/Icons/syspeek-90.svg";
 import filesIcon from "../../Assets/Icons/file-manager.svg";
 import { gsap } from "gsap";
 import React, { Component } from "react";

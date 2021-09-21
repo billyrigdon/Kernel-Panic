@@ -4,11 +4,15 @@ $darkColor: #4A4453;
 $trafficRed: #e18999;
 $trafficYellow: #f9f871;
 $trafficGreen: #00c9a4;
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
 
 /* width */
 ::-webkit-scrollbar {
 	width: 0px;
+}
+
+* {
+	font-family: 'Ubuntu Mono', monospace;
 }
 
 #window {
@@ -19,8 +23,8 @@ $trafficGreen: #00c9a4;
 	color:#bababa;
 	width: 45vw;
 	height:50vh;
-	left: 0;
-	top:0;
+	left: 30%;
+	top:20%;
 }
 
 
@@ -67,27 +71,62 @@ $trafficGreen: #00c9a4;
 	height: 100%;
 }
 
+ul {
+	list-style: none;
+}
+
+#sanity {
+	text-align: center;
+}
+
 #moves {
 	flex-direction: column;
 	display: flex;
 	align-items: flex-start;
 	justify-content: flex-start;
-	width: 50%;
+	width: 35%;	
+	padding:.5rem;
+}
+
+#moves ul li p {
+	font-size:.8rem;
 }
 
 #moves h2 {
 	font-size: 1.2rem;
+	
+}
+
+
+#battleMessage {
+	font-size: 1.5rem;
+	font-weight: bold;
+
+}
+
+#moves li {
+	font-size: 1.1rem;
+}
+
+.move {
+	cursor: pointer;
 }
 
 #enemy {
-	width: 50%;
+	width: 65%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: flex-start;
+	margin-top: 5rem;	
+}
+
+#enemy p {
+	font-size: 1.2rem;
 }
 
 .ascii {
 	font-family: monospace;
 	white-space: pre;
+	font-size: 1.3rem;
 }
