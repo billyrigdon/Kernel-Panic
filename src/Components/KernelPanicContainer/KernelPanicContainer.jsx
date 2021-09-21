@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from "react";
 import KernelPanic from "../../KernelPanic";
 import BattleScreen from "../BattleScreen/BattleScreen";
-import "./KernelPanic.css";
+import Desktop from "../Desktop/Desktop";
+import "./KernelPanic.scss";
 
 class KernelPanicContainer extends Component {
 	constructor(props) {
@@ -207,6 +208,7 @@ class KernelPanicContainer extends Component {
 				{this.state.battleOpen && (
 					<BattleScreen attack={this.attack} {...this.state} />
 				)}
+				{this.state.battleOpen && <Desktop />}
 				<div id="gameContainer"></div>
 			</Fragment>
 		);
