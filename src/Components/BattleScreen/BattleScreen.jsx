@@ -20,7 +20,7 @@ class BattleScreen extends Component {
 		));
 
 		const itemList = this.props.items.map((item, index) => (
-			<li className="item" key={item.name}>
+			<li className="item" key={item.name} onClick={() => {this.props.useItemBattle(item)}}>
 				{`>`} {item.name} - {item.quantity}x
 				<br />
 				<p> --{item.description}</p>
@@ -39,8 +39,13 @@ class BattleScreen extends Component {
 					<div id="battle-container">
 						<div id="moves" className="column">
 							<h2 id="sanity">SANITY:{this.props.sanity}</h2>
-							<br/>
-							<h2><span className="bashPrompt">root@gh0st:~$</span> list_moves.sh</h2>
+							<br />
+							<h2>
+								<span className="bashPrompt">
+									root@gh0st:~$
+								</span>{" "}
+								list_moves.sh
+							</h2>
 							<ul>
 								<br />
 								<li>---Available Commands---</li>
@@ -48,7 +53,12 @@ class BattleScreen extends Component {
 								{moveList}
 							</ul>
 							<br />
-							<h2><span className="bashPrompt">root@gh0st:~$</span> list_items.sh</h2>
+							<h2>
+								<span className="bashPrompt">
+									root@gh0st:~$
+								</span>{" "}
+								list_items.sh
+							</h2>
 							<ul>
 								<br />
 								<li>---Available Items---</li>
