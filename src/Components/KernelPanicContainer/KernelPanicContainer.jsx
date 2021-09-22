@@ -7,16 +7,18 @@ import "./KernelPanic.scss";
 class KernelPanicContainer extends Component {
 	constructor(props) {
 		super(props);
-		//Bind attack function so state can update from child component
+		//Bind methods so state can update from child component
 		this.attack = this.attack.bind(this);
 		this.useItem = this.useItem.bind(this);
 		this.useItemBattle = this.useItemBattle.bind(this);
+		this.performAction = this.performAction.bind(this);
 	}
 	state = {
 		// Player properties
 		sanity: 100,
 		typingSpeed: 5,
 		brainPower: 5,
+		//Default move list, will be overwritten by local storage if it exists
 		moves: [
 			{
 				name: "console.log('Hello World');",
@@ -24,6 +26,7 @@ class KernelPanicContainer extends Component {
 				heal: 0,
 				type: "whiteHat",
 				description: "Damage:1",
+				category: "move",
 			},
 			{
 				name: "Brute Force",
@@ -31,6 +34,7 @@ class KernelPanicContainer extends Component {
 				heal: 0,
 				type: "blackHat",
 				description: "Damage: 2",
+				category: "move",
 			},
 			{
 				name: "Pray",
@@ -38,8 +42,10 @@ class KernelPanicContainer extends Component {
 				heal: 10,
 				type: "spiritual",
 				description: "Raises Sanity by 10",
+				category: "move",
 			},
 		],
+		//Default item list, will be overwritten by local storage if it exists
 		items: [
 			{
 				name: "Risperidone",
@@ -49,6 +55,7 @@ class KernelPanicContainer extends Component {
 				quantity: 5,
 				description: "Raises Sanity by 50 points",
 				message: "You've gained 50 sanity!",
+				category: "item",
 			},
 			{
 				name: "Ritalin",
@@ -58,14 +65,15 @@ class KernelPanicContainer extends Component {
 				quantity: 1,
 				description: "Raises sanity, typing speed, and brainpower",
 				message: "You're feeling focused",
+				category: "item",
 			},
 		],
 
 		//Enemy Stats
 		enemyName: "eXpl01t.exe",
 		enemyBytes: 20,
-		enemySpeed: 50,
-		enemyPower: 100,
+		enemySpeed: 5,
+		enemyPower: 3,
 		enemyType: "bug",
 		enemyAscii: `
 	\\       /
@@ -83,6 +91,8 @@ class KernelPanicContainer extends Component {
 		battleOpen: true,
 		//Message that is displayed in battle
 		battleMessage: "",
+		//Used to detect if an action is taking place so you can't make another move during the action
+		battling: false,
 	};
 
 	attack(move) {
@@ -98,7 +108,7 @@ class KernelPanicContainer extends Component {
 		}
 
 		//Compare speeds to decide who goes first
-		if (enemSpeed < speed) {
+		if (enemSpeed <= speed) {
 			//If move does damage, deal that damage
 			if (move.damage > 0) {
 				this.setState({
@@ -124,7 +134,7 @@ class KernelPanicContainer extends Component {
 					}, 1300);
 				}, 1300);
 			} else {
-				//Display battle message that you've won 
+				//Display battle message that you've won
 				setTimeout(() => {
 					this.setState({
 						battleMessage: `You've defeated ${this.state.enemyName}`,
@@ -157,7 +167,7 @@ class KernelPanicContainer extends Component {
 						sanity: this.state.sanity + move.heal,
 						battleMessage: `Dealt ${moveDamage} Byte Damage and gained ${move.heal} Sanity`,
 					});
-					//If move defeats enemy, display battle message and end battle 
+					//If move defeats enemy, display battle message and end battle
 					if (this.state.enemyBytes - (move.damage + speed) <= 0) {
 						setTimeout(() => {
 							this.setState({
@@ -217,7 +227,7 @@ class KernelPanicContainer extends Component {
 		//Save items array to localstorage
 		setTimeout(() => {
 			localStorage.setItem("items", JSON.stringify(this.state.items));
-		},1300)
+		}, 1300);
 	}
 
 	useItemBattle(item) {
@@ -255,6 +265,29 @@ class KernelPanicContainer extends Component {
 		}, 1300);
 	}
 
+	async performAction(action) {
+		console.log(this.state.battling);
+		if (!this.state.battling) {
+			this.setState({
+				battling: true,
+			});
+			console.log(this.state.battling)
+			if (action.category === "move") {
+				console.log(action.name);
+				await this.attack(action);
+			} else if (action.category == "item") {
+				console.log(action.name);
+				await this.useItemBattle(action);
+			}
+			setTimeout(() => {
+				this.setState({
+					battling: false,
+				});
+			},2600)
+			
+		}
+	}
+
 	componentDidMount() {
 		//Checks localstorage for moves and sets state accordingly
 		//If there's no localstorage set, it uses the default moves and sets localstorage
@@ -287,6 +320,7 @@ class KernelPanicContainer extends Component {
 						useItem={this.useItem}
 						useItemBattle={this.useItemBattle}
 						attack={this.attack}
+						performAction={this.performAction}
 						{...this.state}
 					/>
 				)}

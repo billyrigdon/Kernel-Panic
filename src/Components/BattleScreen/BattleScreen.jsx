@@ -8,19 +8,19 @@ class BattleScreen extends Component {
 	}
 
 	render() {
-		const moveList = this.props.moves.map((item, index) => (
+		const moveList = this.props.moves.map((move, index) => (
 			<li
 				className="move"
-				key={item.name}
-				onClick={() => this.props.attack(item)}
+				key={move.name}
+				onClick={() => this.props.performAction(move)}
 			>
 				{`>`}
-				{item.name}
+				{move.name}
 			</li>
 		));
 
 		const itemList = this.props.items.map((item, index) => (
-			<li className="item" key={item.name} onClick={() => {this.props.useItemBattle(item)}}>
+			<li className="item" key={item.name} onClick={() => {this.props.performAction(item)}}>
 				{`>`} {item.name} - {item.quantity}x
 				<br />
 				<p> --{item.description}</p>
