@@ -88,7 +88,7 @@ class KernelPanicContainer extends Component {
 	  ('    ('       ')`,
 
 		//Opens battle screen if true
-		battleOpen: true,
+		battleOpen: false,
 		//Message that is displayed in battle
 		battleMessage: "",
 		//Used to detect if an action is taking place so you can't make another move during the action
@@ -266,12 +266,12 @@ class KernelPanicContainer extends Component {
 	}
 
 	async performAction(action) {
-		console.log(this.state.battling);
+		//If battling is false, set battling to true
 		if (!this.state.battling) {
 			this.setState({
 				battling: true,
 			});
-			console.log(this.state.battling)
+			//Use move or item
 			if (action.category === "move") {
 				console.log(action.name);
 				await this.attack(action);
@@ -279,6 +279,7 @@ class KernelPanicContainer extends Component {
 				console.log(action.name);
 				await this.useItemBattle(action);
 			}
+			//After allowing time for the action to complete, set battling back to false
 			setTimeout(() => {
 				this.setState({
 					battling: false,
@@ -317,9 +318,6 @@ class KernelPanicContainer extends Component {
 			<Fragment>
 				{this.state.battleOpen && (
 					<BattleScreen
-						useItem={this.useItem}
-						useItemBattle={this.useItemBattle}
-						attack={this.attack}
 						performAction={this.performAction}
 						{...this.state}
 					/>
